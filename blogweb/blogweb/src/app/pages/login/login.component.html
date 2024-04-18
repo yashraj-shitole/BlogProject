@@ -1,0 +1,17 @@
+<div class="h-[60vh] flex flex-col justify-center items-center">
+    <h1 class="text-3xl mb-3">Login</h1>
+    <form class="w-[90%] md:w-[60%] lg:w-[40%] rounded-xl shadow-2xl px-8 py-4">
+        <div class="mb-2">
+            <label for="name">Email </label> <br>
+            <input type="email" name="email" required [(ngModel)]="email">
+        </div>
+        <div class="mb-2">
+            <label for="password">Password</label> <br>
+            <input type="password" name="password" required [(ngModel)]="password">
+        </div>
+        <div class="w-full text-center mb-2 text-[1rem]">
+            <a routerLink="/register" class="text-sky-600">Don't have an account? Register</a>
+        </div>
+        <button (click)="loginUser()">Login</button>
+    </form>
+</div>

@@ -1,0 +1,45 @@
+<div class="flex flex-col items-center gap-4 md:gap-10 ">
+    <ng-container *ngIf="posts.length === 0" class="">
+        <img src="../../../assets/noting_posted.png" class="w-[25rem] mt-12" alt="">
+        <p class="text-2xl -mt-12">Nothing to show.</p>
+    </ng-container>
+    <div class="flex flex-col w-[90%] md:w-[70%] lg:w-[55%] items-center bg-white border border-gray-200 rounded-lg shadow-lg md:flex-row hover:bg-gray-100"
+        *ngFor="let post of posts">
+
+        <img class="object-cover w-full rounded-t-lg h-48 sm:h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
+            [src]="post.img" alt="Image">
+        <div class="flex flex-col justify-between p-4 leading-normal">
+            <div class="flex items-center mb-2">
+                <img class="w-10 h-10 rounded-full mr-4" [src]="post.user.image" alt="Avatar">
+                <div class="text-sm">
+                    <p class="text-gray-900 leading-none text-lg"> {{post.user.fullName}}</p>
+                    <p class="text-gray-600">{{post.date | date:'medium'}}</p>
+                </div>
+            </div>
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{post.name}}</h5>
+            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{post.content.length > 200 ?
+                post.content.substr(0,200) + '...' :
+                post.content}}</p>
+            <div class="actions flex justify-between items-center">
+                <div class="space-x-4">
+                    <button class="view-count bg-gray-500 rounded-md px-2 py-1 text-white">
+                        {{post.viewCount}} <i class="fa-solid fa-eye ml-1"></i>
+                    </button>
+                    <button class="like-count bg-gray-500 rounded-md px-2 py-1 text-white">
+                        {{post.likeCount}} <i class="fa-solid fa-heart ml-1"></i>
+                    </button>
+                </div>
+                <div class="flex gap-2">
+                    <button (click)="deletePost(post.id)" class="px-2 py-1 bg-black text-white rounded-md">Delete
+                        Post</button>
+                    <button (click)="goToUpdate(post)" class=" px-2 py-1 bg-orange-400 text-white rounded-md">Update
+                        Post</button>
+                    <button routerLink="/view-post/{{post.id}}"
+                        class="bg-blue-500 text-white rounded-xl px-2 py-1 space-x-2"><span>View Post</span> <i
+                            class="fa-solid fa-arrow-right fa-1x"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br>

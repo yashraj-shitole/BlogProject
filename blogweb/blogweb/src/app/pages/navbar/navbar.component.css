@@ -1,0 +1,24 @@
+
+
+/* Add this to your CSS file */
+.nav-link {
+    color: #5c6575;
+    font-size: 1.25rem; /* Adjust size as needed */
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: black;
+}
+
+.dropdown-link {
+    display: block;
+    padding: 0.75rem 1.5rem; /* Adjust padding as needed */
+    color: #4a5568;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-link:hover {
+    background-color: #edf2f7;
+    color: #2d3748;
+}

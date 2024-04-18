@@ -1,0 +1,41 @@
+<nav class="flex sticky top-0 w-full bg-white items-center justify-between px-6 py-3 shadow-xl mb-4">
+    <h2 class="flex gap-2 items-center poppins-semibold ">
+        <img src="../../../assets/blogger.png" alt="" class="w-10 h-10">
+        <a routerLink="/" class="text-[1.5rem] text-gray-800 hover:text-gray-600 transition duration-300">Blog
+            Application</a>
+    </h2>
+    <div *ngIf="user" class="flex gap-8 items-center poppins-regular">
+        <div class="flex gap-4">
+            <a class="nav-link" routerLink="/">Home</a>
+            <a class="nav-link" routerLink="/search">Search</a>
+            <a class="nav-link" routerLink="/popular">Popular</a>
+        </div>
+        <div class="flex gap-2">
+            <a class=" flex items-center shadow-lg rounded-full px-4 py-3 gap-2 cursor-pointer bg-black text-white"
+                routerLink="/create-post"><i class="fa-regular fa-pen-to-square"></i> New Post</a>
+            <div class="relative" (click)="toggleDropdown()">
+                <div id="userDropdown"
+                    class="flex items-center shadow-lg rounded-full px-3 py-1 gap-2 ring-1 ring-gray-500 cursor-pointer">
+                    <img class="w-10 h-10 rounded-full" [src]="user.image" alt="User Image">
+                    <p class="text-lg">{{ user.fullName }}</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-1 text-gray-500" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </div>
+                <div class="absolute bg-white p-2 rounded-md mt-2 ml-10 shadow-xl" [class.hidden]="!isDropdownOpen"
+                    [class.block]="isDropdownOpen" id="dropdownMenu" aria-labelledby="userDropdown"
+                    (click)="stopPropagation($event)">
+                    <a routerLink="/my-posts" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded"
+                        (click)="isDropdownOpen = false">My Posts</a>
+                    <button class="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-200 rounded"
+                        (click)="logout(); isDropdownOpen = false;">Logout</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</nav>

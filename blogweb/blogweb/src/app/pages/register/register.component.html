@@ -1,0 +1,42 @@
+<div class="h-[60vh] flex flex-col justify-center items-center">
+    <h1 class="text-3xl mb-3">Register</h1>
+    <form [formGroup]="registerForm" class="w-[90%] md:w-[60%] lg:w-[40%] rounded-xl shadow-2xl px-8 py-4">
+        <div class="mb-2">
+            <label for="fullName">Full Name </label> <br>
+            <input type="text" name="name" formControlName="fullName">
+            <div *ngIf="registerForm.get('fullName').invalid && (registerForm.get('fullName').dirty || registerForm.get('fullName').touched)"
+                class="text-red-500">Full name is required
+            </div>
+        </div>
+        <div class="mb-2">
+            <label for="email">Email</label> <br>
+            <input type="email" name="email" formControlName="email">
+            <div *ngIf="registerForm.get('email').invalid && (registerForm.get('email').dirty || registerForm.get('email').touched)"
+                class="text-red-500">Email is required
+            </div>
+        </div>
+        <div class="mb-2">
+            <label for="password">Password</label><br>
+            <input type="password" name="password" id="" formControlName="password">
+            <div *ngIf="registerForm.get('password').invalid && (registerForm.get('password').dirty || registerForm.get('password').touched)"
+                class="text-red-500">Password is required
+            </div>
+        </div>
+        <div class="mb-4 flex">
+            <label class="flex items-center">
+                <input type="radio" class="form-radio text-indigo-600 mb-1" formControlName="gender" [value]="'male'">
+                <span class="ml-2">Male</span>
+            </label>
+            <label class="inline-flex items-center ml-6">
+                <input type="radio" class="form-radio text-indigo-600 mb-1" formControlName="gender" [value]="'female'">
+                <span class="ml-2">Female</span>
+            </label>
+        </div>
+
+        <div class="w-full text-center mb-2 text-[1rem]">
+            <a routerLink="/login" class="text-sky-600">Already have an account? Login</a>
+        </div>
+
+        <button [disabled]="!registerForm.valid" (click)="registerUser()">Register</button>
+    </form>
+</div>

@@ -1,0 +1,12 @@
+.tag-container {
+  @apply flex flex-wrap mb-4;
+}
+
+.tag {
+  @apply bg-gray-300 px-2 rounded-lg py-1 mr-2;
+}
+
+input,
+textarea {
+  @apply w-full border-2 rounded-lg p-2 focus:border-black mt-2;
+}

@@ -1,0 +1,8 @@
+input,
+textarea {
+  @apply w-full border-2 rounded-lg p-2 focus:border-black mt-2;
+}
+
+button {
+  @apply w-full bg-sky-600 p-2 text-white rounded-lg;
+}

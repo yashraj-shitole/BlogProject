@@ -1,0 +1,77 @@
+<div *ngIf="postData" class="flex flex-col justify-center items-center px-6 py-4">
+    <div class="card w-[90%] sm:w-[70%] md:w-[60%]">
+        <div class="flex items-center my-4">
+          <img class="w-10 h-10 rounded-full mr-4 " [src]="postData.user.image" alt="Avatar of Jonathan Reinink">
+
+            <div class="text-sm">
+                <p class="text-gray-900 leading-none poppins-medium text-xl">{{ postData.user.fullName }}</p>
+                <p class="text-gray-600">{{ postData.date | date:'medium' }}</p>
+            </div>
+        </div>
+
+        <div class="w-full flex items-center">
+
+        <img class="object-cover rounded-t-lg h-60 sm:h-96  md:w-fit md:rounded-lg mb-4"
+            [src]="postData.img" alt="Image">
+          </div>
+
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ postData.name }}</h5>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 text-justify">{{ postData.content }}</p>
+        <div class="tag-container">
+            <div *ngFor="let tag of postData.tags" class="tag mt-2">{{ tag }}</div>
+        </div>
+        <div class="actions space-x-4">
+            <button class="view-count bg-gray-500 rounded-md px-2 py-1 text-white">
+                {{ postData.viewCount }} <i class="fa-solid fa-eye ml-1"></i>
+            </button>
+            <button class="like-count bg-gray-500 rounded-md px-2 py-1 text-white cursor-pointer"
+                [disabled]=" postLiked" (click)="likePost()">
+                {{ postData.likeCount }}
+                <i *ngIf="!postLiked" class="fa-solid fa-heart ml-1"></i>
+                <ng-template [ngIf]="postLiked" else likedIcon>
+                    <i class="fa-solid fa-heart ml-1 text-red-500"></i>
+                </ng-template>
+                <ng-template #likedIcon>
+                    <i class="fa-solid fa-heart ml-1"></i>
+                </ng-template>
+            </button>
+        </div>
+    </div>
+
+    <div class="comment-form my-4 w-[90%] sm:w-[70%] md:w-[60%]">
+        <h4 class="mb-2 font-semibold text-xl">Write Your Comment</h4>
+        <form action="" [formGroup]="commentForm">
+            <div class="mb-2">
+                <textarea name="content" rows="5" formControlName="content"
+                    class="w-full px-3 py-2 border rounded-md"></textarea>
+                <div *ngIf="commentForm.get('content').invalid && (commentForm.get('content').dirty || commentForm.get('content').touched)"
+                    class="text-red-500">Content is required and should be less than 5000 characters
+                </div>
+            </div>
+            <button type="submit" [disabled]="!commentForm.valid" (click)="publishComment()"
+                class="w-full bg-sky-600 p-2 rounded-md text-white">Post</button>
+        </form>
+    </div>
+
+    <div class="comment w-[90%] sm:w-[70%] md:w-[60%]">
+        <h4 class="mb-4 font-semibold text-xl ">Comments</h4>
+        <div class="grid grid-cols-2 gap-x-4 " *ngIf="comments && comments.length > 0; else noComments">
+            <div class="mb-3 shadow-md px-4 py-1 " *ngFor="let comment of comments">
+                <div class="flex items-center">
+                    <img class="w-10 h-10 rounded-full mr-4" [src]="comment.user.image"
+                        alt="Avatar of Jonathan Reinink">
+                    <div class="text-sm">
+                        <p class="text-gray-900 leading-none">{{ comment.user.fullName }}</p>
+                        <p class="text-gray-600">{{ comment.createdAt | date:'medium' }}</p>
+                    </div>
+                </div>
+                <div class="content mt-1">
+                    {{ comment.content }}
+                </div>
+            </div>
+        </div>
+        <ng-template #noComments>
+            <div class="text-gray-600">No comments</div>
+        </ng-template>
+    </div>
+</div>

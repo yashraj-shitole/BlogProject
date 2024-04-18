@@ -1,0 +1,7 @@
+input {
+  @apply w-[60%] mx-auto border-2 rounded-lg p-3 focus:border-black;
+}
+
+button {
+  @apply w-32 bg-sky-600 p-3 text-white rounded-lg;
+}

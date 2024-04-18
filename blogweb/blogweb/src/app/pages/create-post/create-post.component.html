@@ -1,0 +1,36 @@
+<div class=" flex justify-center ">
+    <form [formGroup]="postForm" class="w-[90%] md:w-[60%] lg:w-[40%] rounded-xl shadow-2xl px-8 py-4">
+        <h2 class="text-3xl poppins-regular text-center mb-4">Create New Post</h2>
+        <div class="mb-2">
+            <label for="name">Name</label> <br>
+            <input type="text" name="name" formControlName="name">
+            <div *ngIf="postForm.get('name').invalid && (postForm.get('name').dirty || postForm.get('name').touched)"
+                class="text-red-500">Name is required
+            </div>
+        </div>
+        <div class="mb-2">
+            <label for="img">Image Link</label> <br>
+            <input type="text" name="img" formControlName="img">
+            <div *ngIf="postForm.get('img').invalid && (postForm.get('img').dirty || postForm.get('img').touched)"
+                class="text-red-500">Image Link is required
+            </div>
+        </div>
+        <div class="mb-2">
+            <label for="content">Content</label><br>
+            <textarea name="content" rows="5" formControlName="content"></textarea>
+            <div *ngIf="postForm.get('content').invalid && (postForm.get('content').dirty || postForm.get('content').touched)"
+                class="text-red-500">Content is required and should be less than 5000 characters
+            </div>
+        </div>
+        <div class="mb-2">
+            <label for="content">Add tags</label><br>
+            <div class="tag-container">
+                <input type="text" name="content" id="" class="tag-input" (keydown.enter)="addTag($event)">
+                <div *ngFor="let tag of tags" class="tag mt-2">{{ tag }} <span class="close"
+                        (click)="removeTag(tag)">&times;</span></div>
+            </div>
+        </div>
+        <button [disabled]="!postForm.valid" (click)="createPost()">Post</button>
+    </form>
+</div>
+<br><br>
